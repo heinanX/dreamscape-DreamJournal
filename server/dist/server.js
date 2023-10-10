@@ -16,11 +16,21 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = require("./app");
 function connect() {
     return __awaiter(this, void 0, void 0, function* () {
-        mongoose_1.default.set('strictQuery', true);
-        yield mongoose_1.default.connect('mongodb://127.0.0.1:27017/dreamscapeBW');
-        mongoose_1.default.connection.on('error', () => { console.log('error'); });
-        mongoose_1.default.connection.once('error', () => { console.log('server connected'); });
+        try {
+            mongoose_1.default.set("strictQuery", true);
+            yield mongoose_1.default.connect("mongodb://127.0.0.1:27017/dreamscapeBW");
+            mongoose_1.default.connection.on("error", () => {
+                console.log("error");
+            });
+            mongoose_1.default.connection.once("error", () => {
+                console.log("server connected");
+            });
+            console.log('connected to mongoDB');
+        }
+        catch (error) {
+            console.log(error);
+        }
     });
 }
 connect();
-app_1.app.listen(3000, () => console.log('server is up'));
+app_1.app.listen(3000, () => console.log("server is up"));
