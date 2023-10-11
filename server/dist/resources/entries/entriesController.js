@@ -9,21 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createCategory = void 0;
-const catModel_1 = require("./catModel");
-const createCategory = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createEntries = void 0;
+const entriesModel_1 = require("./entriesModel");
+const createEntries = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const checkCat = yield catModel_1.CatModel.findOne(req.body);
-        if (!checkCat) {
-            const newCategory = yield catModel_1.CatModel.create(req.body);
+        const checkCat = yield entriesModel_1.EntriesModel.findOne(req.body);
+        /* if (!checkCat) {
+            const newCategory = await CatModel.create(req.body);
             res.status(201).json(newCategory);
-        }
-        else {
+        } else {
             res.status(404).json(req.body.category + ' already taken');
-        }
+        } */
     }
     catch (error) {
         res.status(404).json(error);
     }
 });
-exports.createCategory = createCategory;
+exports.createEntries = createEntries;

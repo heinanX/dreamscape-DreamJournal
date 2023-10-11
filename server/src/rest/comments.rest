@@ -1,0 +1,7 @@
+POST http://localhost:3000/api/comments
+Content-Type: application/json
+
+{
+    "user": "6526604f94f808905330ba33",
+    "body": "Hello this is a comment about"
+}
