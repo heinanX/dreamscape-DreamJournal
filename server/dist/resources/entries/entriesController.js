@@ -11,15 +11,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createEntries = void 0;
 const entriesModel_1 = require("./entriesModel");
-const createEntries = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const createEntries = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const checkCat = yield entriesModel_1.EntriesModel.findOne(req.body);
-        /* if (!checkCat) {
-            const newCategory = await CatModel.create(req.body);
-            res.status(201).json(newCategory);
-        } else {
-            res.status(404).json(req.body.category + ' already taken');
-        } */
+        const newEntry = yield entriesModel_1.EntriesModel.create(req.body);
+        res.status(201).json(newEntry);
     }
     catch (error) {
         res.status(404).json(error);
