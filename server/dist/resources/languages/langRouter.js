@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.langRouter = void 0;
+const express_1 = require("express");
+const langController_1 = require("./langController");
+const langModel_1 = require("../languages/langModel");
+const shared_1 = require("../../_middlewares/shared");
+exports.langRouter = (0, express_1.Router)();
+exports.langRouter.get('/', langController_1.getLanguages);
+exports.langRouter.post('/', (0, shared_1.validate)(langModel_1.languageJoiSchema), langController_1.createLanguage);
