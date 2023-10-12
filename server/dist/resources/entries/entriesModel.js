@@ -10,5 +10,6 @@ const entriesSchema = new mongoose_1.Schema({
     categories: { type: String, require: true },
     publication_date: { type: Date, default: Date.now },
     comments: { type: String },
+    langauge: { type: mongoose_1.Schema.Types.ObjectId, ref: "languages", required: true }
 }, { versionKey: false });
 exports.EntriesModel = mongoose_1.models.entries || (0, mongoose_1.model)("entries", entriesSchema);

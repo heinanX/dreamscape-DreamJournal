@@ -9,6 +9,7 @@ const entriesSchema = new Schema(
     categories: { type: String, require: true },
     publication_date: { type: Date, default: Date.now },
     comments: { type: String},
+    langauge: { type: Schema.Types.ObjectId, ref: "languages", required: true}
   },
   { versionKey: false }
 );
