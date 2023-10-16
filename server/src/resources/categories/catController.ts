@@ -1,6 +1,18 @@
 import { NextFunction, Request, Response } from "express";
 import { CatModel } from "./catModel";
 
+export const getCat = async(
+  req: Request,
+  res: Response
+) => {
+  try {
+      const categories = await CatModel.find( );
+      res.status(200).json(categories);
+  } catch (error) {
+      res.status(404).json(error);
+  }
+}
+
 export const createCategory = async (
   req: Request,
   res: Response,

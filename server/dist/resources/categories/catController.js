@@ -9,8 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createCategory = void 0;
+exports.createCategory = exports.getCat = void 0;
 const catModel_1 = require("./catModel");
+const getCat = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const categories = yield catModel_1.CatModel.find();
+        res.status(200).json(categories);
+    }
+    catch (error) {
+        res.status(404).json(error);
+    }
+});
+exports.getCat = getCat;
 const createCategory = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const checkCat = yield catModel_1.CatModel.findOne(req.body);
