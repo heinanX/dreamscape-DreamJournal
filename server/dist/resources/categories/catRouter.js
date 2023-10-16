@@ -4,5 +4,7 @@ exports.catRouter = void 0;
 const express_1 = require("express");
 const catController_1 = require("./catController");
 const catMiddleware_1 = require("../../_middlewares/catMiddleware");
+const catModel_1 = require("./catModel");
+const shared_1 = require("../../_middlewares/shared");
 exports.catRouter = (0, express_1.Router)();
-exports.catRouter.post('/', catMiddleware_1.formatData, catController_1.createCategory);
+exports.catRouter.post('/', (0, shared_1.validate)(catModel_1.catJoiSchema), catMiddleware_1.formatData, catController_1.createCategory);

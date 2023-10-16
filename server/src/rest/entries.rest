@@ -1,0 +1,11 @@
+POST http://localhost:3000/api/entries
+Content-Type: application/json
+
+{
+    "title": "Boys like girls and girls like boys and money",
+    "excerpt": "girls will laugh at boys when they're not funny",
+    "body": "and these boys like these girls like these girls like these boys",
+    "author": "652666c4559f8216cdb756f1",
+    "categories": "652509e897a9c2ea6fae0d97",
+    "language": "652699b2bf0592c9c21686ff"
+}

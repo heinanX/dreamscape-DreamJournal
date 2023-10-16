@@ -1,4 +1,5 @@
 import { Schema, model, models } from "mongoose";
+import Joi from 'joi';
 
 const userSchema = new Schema(
   {
@@ -15,5 +16,22 @@ const userSchema = new Schema(
   },
   { versionKey: false }
 );
+
+export const userJoiSchema = Joi.object(
+  {
+    _id: Joi.string(),
+    username: Joi.string().required(),
+    password: Joi.string().required(),
+    mail: Joi.string().email({ minDomainSegments: 2 }).required(),
+    isAdmin: Joi.boolean(),
+    profilePicture: Joi.string(),
+    entry: Joi.array(),
+    likes: Joi.number(),
+    comments: Joi.array(),
+    joinDate: Joi.date()
+  }
+);
+
+
 
 export const UserModel = models.users || model("users", userSchema);

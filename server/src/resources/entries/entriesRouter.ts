@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { createEntries } from './entriesController';
-//import { formatData } from '../_middlewares/catMiddleware';
+import { validate } from '../../_middlewares/shared';
+import { entriesJoiSchema } from './entriesModel';
 export const entryRouter = Router();
 
-entryRouter.post('/', createEntries);
+entryRouter.post('/', validate(entriesJoiSchema), createEntries);

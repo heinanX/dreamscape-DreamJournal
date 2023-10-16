@@ -3,5 +3,6 @@ Content-Type: application/json
 
 {
     "user": "6526604f94f808905330ba33",
-    "body": "Hello this is a comment about"
+    "entry": "6527e3936871c0a035f89e69",
+    "body": "This is a comment about a comment"
 }
