@@ -1,7 +1,10 @@
 import { Router } from 'express'
-import { createEntries } from './entriesController';
+import { getEntries, getEntry, createEntries, deleteEntry } from './entriesController';
 import { validate } from '../../_middlewares/shared';
 import { entriesJoiSchema } from './entriesModel';
 export const entryRouter = Router();
 
-entryRouter.post('/', validate(entriesJoiSchema), createEntries);
+entryRouter.get('/', getEntries);
+entryRouter.get('/:id', getEntry);
+entryRouter.post('/create-new', validate(entriesJoiSchema), createEntries);
+entryRouter.delete('/:id', deleteEntry);
