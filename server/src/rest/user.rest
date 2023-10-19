@@ -1,8 +1,28 @@
-POST http://localhost:3000/api/users
+###     // CREATE A NEW USER
+GET  http://localhost:3000/api/users
+
+###     // CREATE A NEW USER
+POST http://localhost:3000/api/users/create
 Content-Type: application/json
 
 {
-    "username": "heinan",
+    "username": "yolahoo",
     "password": "1234",
-    "mail": "heinan@admin.com"
+    "mail": "yolahoo@admin.com"
 }
+
+###     // LOGIN USER
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "password": "1234",
+    "username": "heinan"
+}
+
+###     // LOGOUT USER
+POST http://localhost:3000/api/users/logout
+
+
+###     // DELETE USER
+DELETE http://localhost:3000/api/users/delete/652d03e039dfe6acb7af9aa9
