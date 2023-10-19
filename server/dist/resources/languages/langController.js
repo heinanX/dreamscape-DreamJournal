@@ -9,8 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLanguages = exports.createLanguage = void 0;
+exports.createLanguage = exports.getLanguages = void 0;
 const langModel_1 = require("./langModel");
+const getLanguages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const langs = yield langModel_1.LanguageModel.find();
+        res.status(201).json(langs);
+    }
+    catch (error) {
+        res.status(404).json(error);
+    }
+});
+exports.getLanguages = getLanguages;
 const createLanguage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { language } = req.body;
@@ -23,13 +33,3 @@ const createLanguage = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.createLanguage = createLanguage;
-const getLanguages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const langs = yield langModel_1.LanguageModel.find();
-        res.status(201).json(langs);
-    }
-    catch (error) {
-        res.status(404).json(error);
-    }
-});
-exports.getLanguages = getLanguages;
