@@ -12,7 +12,6 @@ async function connect() {
       console.log("server connected");
     });
     console.log('connected to mongoDB');
-    
   } catch (error) {
     console.log(error);
   }

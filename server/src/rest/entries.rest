@@ -1,11 +1,23 @@
-POST http://localhost:3000/api/entries
+GET http://localhost:3000/api/entries
+
+###
+
+GET http://localhost:3000/api/entries/652fcb4987fab73a5381bc91
+
+###
+
+POST http://localhost:3000/api/entries/create-new
 Content-Type: application/json
 
 {
-    "title": "Boys like girls and girls like boys and money",
-    "excerpt": "girls will laugh at boys when they're not funny",
-    "body": "and these boys like these girls like these girls like these boys",
+    "title": "This is a ",
+    "excerpt": "Early morning, she wakes up and it knocks knocks knocks on the door",
+    "body": "Its time for makeup, a perfect smile, but theres no one there to wake her up",
     "author": "652666c4559f8216cdb756f1",
     "categories": "652509e897a9c2ea6fae0d97",
     "language": "652699b2bf0592c9c21686ff"
 }
+
+###
+
+DELETE http://localhost:3000/api/entries/652fcb4987fab73a5381bc91
