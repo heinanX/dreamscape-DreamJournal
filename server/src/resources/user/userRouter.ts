@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { createUser,  getUsers, login, logout, deleteUser } from './userController';
 import { userJoiSchema } from './userModel';
-import { validate } from '../../_middlewares/shared';
+import { validate } from '../../_middlewares/validation';
 
 export const userRouter = Router();
 
