@@ -7,6 +7,7 @@ import { catRouter } from './resources/categories/catRouter';
 import { commentsRouter } from './resources/comments/commentsRouter';
 import { langRouter } from './resources/languages/langRouter';
 import { errorHandler, notFound } from './resources/_middlewares/errorHandling';
+import { contentRatingRouter } from './resources/content_Rating/contRateRouter';
 
 const envSecret = process.env.COOKIE_SESSION_KEY
 if (!envSecret) {
@@ -32,6 +33,7 @@ app.use('/api/categories', catRouter);
 app.use('/api/entries', entryRouter);
 app.use('/api/comments', commentsRouter);
 app.use('/api/language', langRouter);
+app.use('/api/content-rating', contentRatingRouter);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -1,0 +1,18 @@
+GET http://localhost:3000/api/content-rating
+
+###
+
+GET http://localhost:3000/api/content-rating/6532cf106195df11aab10e4d
+
+###
+
+POST http://localhost:3000/api/content-rating/create
+Content-Type: application/json
+
+{
+    "rating": " "
+}
+
+###
+
+DELETE http://localhost:3000/api/content-rating/6532cf106195df11aab10e4d
