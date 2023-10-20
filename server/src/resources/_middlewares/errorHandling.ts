@@ -10,12 +10,12 @@ class AppError extends Error {
   }
 
 // Handle 404 Not Found errors
-const notFound = (req: Request, res: Response) => {
+export const notFound = (req: Request, res: Response) => {
     res.status(404).json("Not found");
 };
   
   // Error handler for other types of errors
-  const errorHandler = (err: AppError, req: Request, res: Response, next: NextFunction) => {
+  export const errorHandler = (err: AppError, req: Request, res: Response, next: NextFunction) => {
     const status = err.status || 500;
     const response = {
       error: true,

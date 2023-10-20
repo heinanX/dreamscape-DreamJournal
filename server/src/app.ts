@@ -6,6 +6,7 @@ import { userRouter } from './resources/user/userRouter';
 import { catRouter } from './resources/categories/catRouter';
 import { commentsRouter } from './resources/comments/commentsRouter';
 import { langRouter } from './resources/languages/langRouter';
+import { errorHandler, notFound } from './resources/_middlewares/errorHandling';
 
 const envSecret = process.env.COOKIE_SESSION_KEY
 if (!envSecret) {
@@ -31,3 +32,6 @@ app.use('/api/categories', catRouter);
 app.use('/api/entries', entryRouter);
 app.use('/api/comments', commentsRouter);
 app.use('/api/language', langRouter);
+
+app.use(notFound);
+app.use(errorHandler);

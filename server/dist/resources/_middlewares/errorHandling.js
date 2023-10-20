@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.errorHandler = exports.notFound = void 0;
 class AppError extends Error {
     constructor(message, status) {
         super(message);
@@ -10,6 +11,7 @@ class AppError extends Error {
 const notFound = (req, res) => {
     res.status(404).json("Not found");
 };
+exports.notFound = notFound;
 // Error handler for other types of errors
 const errorHandler = (err, req, res, next) => {
     const status = err.status || 500;
@@ -23,3 +25,4 @@ const errorHandler = (err, req, res, next) => {
     console.error(err);
     res.status(status).json(response);
 };
+exports.errorHandler = errorHandler;

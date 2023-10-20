@@ -12,6 +12,7 @@ const userRouter_1 = require("./resources/user/userRouter");
 const catRouter_1 = require("./resources/categories/catRouter");
 const commentsRouter_1 = require("./resources/comments/commentsRouter");
 const langRouter_1 = require("./resources/languages/langRouter");
+const errorHandling_1 = require("./resources/_middlewares/errorHandling");
 const envSecret = process.env.COOKIE_SESSION_KEY;
 if (!envSecret) {
     throw new Error('The COOKIE_SESSION_KEY environment variable is not defined.');
@@ -33,3 +34,5 @@ exports.app.use('/api/categories', catRouter_1.catRouter);
 exports.app.use('/api/entries', entriesRouter_1.entryRouter);
 exports.app.use('/api/comments', commentsRouter_1.commentsRouter);
 exports.app.use('/api/language', langRouter_1.langRouter);
+exports.app.use(errorHandling_1.notFound);
+exports.app.use(errorHandling_1.errorHandler);
