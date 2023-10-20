@@ -1,10 +1,13 @@
 import { Router } from 'express'
-import { createCategory, getCat } from './catController';
+import { createCategory, deleteCat, getCats, getCat } from './catController';
 import { formatData } from '../_middlewares/catMiddleware';
 import { catJoiSchema } from './catModel';
 import { validate } from '../_middlewares/validation';
+import { checkAdmin } from '../_middlewares/checkAdmin';
 
 export const catRouter = Router();
 
-catRouter.get('/', getCat);
-catRouter.post('/', validate(catJoiSchema), formatData, createCategory);
+catRouter.get('/', getCats);
+catRouter.get('/:id', getCat);
+catRouter.post('/create', validate(catJoiSchema), formatData, createCategory);
+catRouter.delete('/:id', checkAdmin, deleteCat);

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createComment = exports.getComment = exports.getComments = void 0;
+exports.deleteComment = exports.createComment = exports.getComment = exports.getComments = void 0;
 const commentsModel_1 = require("./commentsModel");
 // GET ALL COMMENTS FROM DB
 const getComments = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -34,7 +34,7 @@ const getComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.getComment = getComment;
 // CREATE A COMMENT IN DATABASE
-const createComment = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const createComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const comment = yield commentsModel_1.CommentsModel.create(req.body);
         res.status(200).json(comment);
@@ -44,3 +44,14 @@ const createComment = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.createComment = createComment;
+// DELETE A COMMENT IN DATABASE
+const deleteComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield commentsModel_1.CommentsModel.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: 'comment deleted' });
+    }
+    catch (error) {
+        res.status(404).json(error);
+    }
+});
+exports.deleteComment = deleteComment;

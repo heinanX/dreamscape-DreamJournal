@@ -25,4 +25,4 @@ POST http://localhost:3000/api/users/logout
 
 
 ###     // DELETE USER
-DELETE http://localhost:3000/api/users/delete/652d03e039dfe6acb7af9aa9
+DELETE http://localhost:3000/api/users/delete/6526604f94f808905330ba33

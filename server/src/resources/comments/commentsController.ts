@@ -22,14 +22,20 @@ export const getComment = async (req: Request, res: Response) => {
 };
 
 // CREATE A COMMENT IN DATABASE
-export const createComment = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const createComment = async (req: Request, res: Response) => {
   try {
     const comment = await CommentsModel.create(req.body);
     res.status(200).json(comment);
+  } catch (error) {
+    res.status(404).json(error);
+  }
+};
+
+// DELETE A COMMENT IN DATABASE
+export const deleteComment = async (req: Request, res: Response) => {
+  try {
+    await CommentsModel.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "comment deleted" });
   } catch (error) {
     res.status(404).json(error);
   }

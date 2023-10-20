@@ -1,7 +1,8 @@
-GET http://localhost:3000/api/comments/652d02df39dfe6acb7af9aa2
+GET http://localhost:3000/api/comments
 
 ###
-GET http://localhost:3000/api/comments
+
+GET http://localhost:3000/api/comments/652d02df39dfe6acb7af9aa2
 
 ###
 
@@ -11,5 +12,9 @@ Content-Type: application/json
 {
     "user": "6526604f94f808905330ba33",
     "entry": "6527e3936871c0a035f89e69",
-    "body": "This is a comment about a comment"
+    "body": "This is a comment about an ass comment shitty"
 }
+
+###
+
+DELETE http://localhost:3000/api/comments/652d01da39dfe6acb7af9a9e
