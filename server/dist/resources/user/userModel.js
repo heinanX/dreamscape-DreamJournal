@@ -13,9 +13,10 @@ const userSchema = new mongoose_1.Schema({
     isAdmin: { type: Boolean, default: false },
     profilePicture: { type: String, default: '/profilePicture/monster.jpg' },
     entry: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "entries" }],
-    likes: { type: Number, default: 0 },
+    likes: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "entries" }],
     comments: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "comments" }],
-    joinDate: { type: Date, default: Date.now }
+    joinDate: { type: Date, default: Date.now },
+    isOnline: { type: Boolean, default: false }
 }, { versionKey: false });
 exports.userJoiSchema = joi_1.default.object({
     _id: joi_1.default.string(),
@@ -27,6 +28,7 @@ exports.userJoiSchema = joi_1.default.object({
     entry: joi_1.default.array(),
     likes: joi_1.default.number(),
     comments: joi_1.default.array(),
-    joinDate: joi_1.default.date()
+    joinDate: joi_1.default.date(),
+    isOnline: joi_1.default.boolean()
 });
 exports.UserModel = mongoose_1.models.users || (0, mongoose_1.model)("users", userSchema);

@@ -1,8 +1,11 @@
 import { Router } from 'express';
-import { createLanguage, getLanguages } from './langController';
+import { createLanguage, deleteLanguage, getLanguage, getLanguages } from './langController';
 import { languageJoiSchema } from '../languages/langModel';
-import { validate } from '../../_middlewares/shared';
+import { validate } from '../_middlewares/validation';
+import { checkAdmin } from '../_middlewares/checkAdmin';
 export const langRouter = Router();
 
 langRouter.get('/', getLanguages);
-langRouter.post('/', validate(languageJoiSchema), createLanguage);
+langRouter.get('/:id', getLanguage);
+langRouter.post('/create', checkAdmin, validate(languageJoiSchema), createLanguage);
+langRouter.delete('/:id', checkAdmin, deleteLanguage);

@@ -1,5 +1,5 @@
 import { Schema, model, models } from "mongoose";
-import Joi from 'joi';
+import Joi, { boolean } from 'joi';
 
 const userSchema = new Schema(
   {
@@ -9,9 +9,10 @@ const userSchema = new Schema(
     isAdmin: { type: Boolean, default: false },
     profilePicture: {type: String, default: '/profilePicture/monster.jpg'},
     entry: [{ type: Schema.Types.ObjectId, ref: "entries" }],
-    likes: { type: Number, default: 0 },
+    likes: [{ type: Schema.Types.ObjectId, ref: "entries"}],
     comments: [{ type: Schema.Types.ObjectId, ref: "comments" }],
-    joinDate: { type: Date, default: Date.now }
+    joinDate: { type: Date, default: Date.now },
+    isOnline: {type: Boolean, default: false}
     
   },
   { versionKey: false }
@@ -28,7 +29,8 @@ export const userJoiSchema = Joi.object(
     entry: Joi.array(),
     likes: Joi.number(),
     comments: Joi.array(),
-    joinDate: Joi.date()
+    joinDate: Joi.date(),
+    isOnline: Joi.boolean()
   }
 );
 

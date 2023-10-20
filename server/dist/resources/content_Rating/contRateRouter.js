@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.contentRatingRouter = void 0;
+const express_1 = require("express");
+const contRateController_1 = require("./contRateController");
+exports.contentRatingRouter = (0, express_1.Router)();
+const validation_1 = require("../_middlewares/validation");
+const contRateModel_1 = require("./contRateModel");
+const checkAdmin_1 = require("../_middlewares/checkAdmin");
+exports.contentRatingRouter.get('/', contRateController_1.getRatings);
+exports.contentRatingRouter.get('/:id', contRateController_1.getRating);
+exports.contentRatingRouter.post('/create', (0, validation_1.validate)(contRateModel_1.contentRatingJoiSchema), checkAdmin_1.checkAdmin, contRateController_1.createRating);
+exports.contentRatingRouter.delete('/:id', checkAdmin_1.checkAdmin, contRateController_1.deleteRating);
