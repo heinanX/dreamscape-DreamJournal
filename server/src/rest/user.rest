@@ -1,4 +1,4 @@
-###     // CREATE A NEW USER
+###     // GET ALL USERS
 GET  http://localhost:3000/api/users
 
 ###     // CREATE A NEW USER

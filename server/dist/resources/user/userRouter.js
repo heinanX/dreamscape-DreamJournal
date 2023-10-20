@@ -4,7 +4,7 @@ exports.userRouter = void 0;
 const express_1 = require("express");
 const userController_1 = require("./userController");
 const userModel_1 = require("./userModel");
-const validation_1 = require("../../_middlewares/validation");
+const validation_1 = require("../_middlewares/validation");
 exports.userRouter = (0, express_1.Router)();
 exports.userRouter.get('/', userController_1.getUsers);
 exports.userRouter.post('/create', (0, validation_1.validate)(userModel_1.userJoiSchema), userController_1.createUser);

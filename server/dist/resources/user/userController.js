@@ -51,6 +51,7 @@ const createUser = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.createUser = createUser;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
         const existingUser = yield userModel_1.UserModel.findOne({
             username: req.body.username,
@@ -59,12 +60,12 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             !(yield bcrypt_1.default.compare(req.body.password, existingUser.password))) {
             return res.status(401).json("Wrong password");
         }
-        // Check if user already is logged in
-        //   if (req.session._id) {
-        //     return res.status(200).json(user);
-        //   }
+        if ((_a = req.session) === null || _a === void 0 ? void 0 : _a._id) {
+            return res.status(200).json({ message: 'user already logged in' });
+        }
         const user = existingUser.toJSON();
         delete user.password;
+        req.session = user;
         res.status(200).json(user);
     }
     catch (error) {
@@ -74,6 +75,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.login = login;
 const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        req.session = null;
         res.status(200).json({ message: "you have been logged out" });
     }
     catch (error) {

@@ -1,11 +1,26 @@
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
+import cookieSession from 'cookie-session';
 import { entryRouter } from './resources/entries/entriesRouter';
 import { userRouter } from './resources/user/userRouter';
 import { catRouter } from './resources/categories/catRouter';
 import { commentsRouter } from './resources/comments/commentsRouter';
 import { langRouter } from './resources/languages/langRouter';
+
+const envSecret = process.env.COOKIE_SESSION_KEY
+if (!envSecret) {
+    throw new Error('The COOKIE_SESSION_KEY environment variable is not defined.');
+}
+
 export const app = express();
+app.use(cookieSession({
+    name: 'session',
+    keys: [envSecret],
+    sameSite: "strict",
+    httpOnly: true,
+    secure: false,
+    maxAge: 36 * 60 * 60 * 1000
+}));
 
 app.use(cors());
 app.use(express.json());

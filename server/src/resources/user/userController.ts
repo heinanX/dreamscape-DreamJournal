@@ -58,13 +58,14 @@ export const login = async (req: Request, res: Response) => {
       return res.status(401).json("Wrong password");
     }
 
-    // Check if user already is logged in
-    //   if (req.session._id) {
-    //     return res.status(200).json(user);
-    //   }
+
+    if (req.session?._id) {
+    return res.status(200).json({ message: 'user already logged in' });
+    }
 
     const user = existingUser.toJSON();
     delete user.password;
+    req.session = user
 
     res.status(200).json(user);
   } catch (error) {
@@ -74,6 +75,7 @@ export const login = async (req: Request, res: Response) => {
 
 export const logout = async (req: Request, res: Response) => {
   try {
+    req.session = null;
     res.status(200).json({ message: "you have been logged out" });
   } catch (error) {
     res.status(200).json(error);

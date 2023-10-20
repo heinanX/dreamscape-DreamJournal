@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.entryRouter = void 0;
 const express_1 = require("express");
 const entriesController_1 = require("./entriesController");
-const validation_1 = require("../../_middlewares/validation");
+const validation_1 = require("../_middlewares/validation");
 const entriesModel_1 = require("./entriesModel");
 exports.entryRouter = (0, express_1.Router)();
 exports.entryRouter.get('/', entriesController_1.getEntries);
