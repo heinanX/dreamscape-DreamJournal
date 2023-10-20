@@ -15,4 +15,4 @@ export const contentRatingJoiSchema = Joi.object(
     }
 )
 
-export const contentRatingModel = models.contentrating || model('contentrating', contentRatingSchema);
+export const contentRatingModel = models.contentratings || model('contentratings', contentRatingSchema);

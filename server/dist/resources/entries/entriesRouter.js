@@ -9,5 +9,5 @@ const profanity_handler_1 = require("../_middlewares/profanity_handler");
 exports.entryRouter = (0, express_1.Router)();
 exports.entryRouter.get('/', entriesController_1.getEntries);
 exports.entryRouter.get('/:id', entriesController_1.getEntry);
-exports.entryRouter.post('/create-new', (0, validation_1.validate)(entriesModel_1.entriesJoiSchema), profanity_handler_1.ProfanityCheck, entriesController_1.createEntries);
+exports.entryRouter.post('/create', (0, validation_1.validate)(entriesModel_1.entriesJoiSchema), profanity_handler_1.ProfanityCheck, entriesController_1.createEntries);
 exports.entryRouter.delete('/:id', entriesController_1.deleteEntry);

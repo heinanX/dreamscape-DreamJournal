@@ -13,4 +13,4 @@ exports.contentRatingJoiSchema = joi_1.default.object({
     _id: joi_1.default.string(),
     rating: joi_1.default.string()
 });
-exports.contentRatingModel = mongoose_1.models.contentrating || (0, mongoose_1.model)('contentrating', contentRatingSchema);
+exports.contentRatingModel = mongoose_1.models.contentratings || (0, mongoose_1.model)('contentratings', contentRatingSchema);

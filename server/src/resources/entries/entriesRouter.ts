@@ -7,5 +7,5 @@ export const entryRouter = Router();
 
 entryRouter.get('/', getEntries);
 entryRouter.get('/:id', getEntry);
-entryRouter.post('/create-new', validate(entriesJoiSchema), ProfanityCheck, createEntries);
+entryRouter.post('/create', validate(entriesJoiSchema), ProfanityCheck, createEntries);
 entryRouter.delete('/:id', deleteEntry);
