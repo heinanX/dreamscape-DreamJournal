@@ -5,5 +5,9 @@ export const checkAdmin = (
   res: Response,
   next: NextFunction
 ) => {
-    //if (req.session.isAdmin) next();
+    if (req.session?.isAdmin) {
+      next();
+    } else {
+      res.status(403).json({ message: `Access denied. You don't have permission to perform this action.` });
+    }
 };
