@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bad-words": "^3.0.4",
     "bcrypt": "^5.1.1",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
@@ -20,6 +21,7 @@
     "mongoose": "^7.5.3"
   },
   "devDependencies": {
+    "@types/bad-words": "^3.0.2",
     "@types/bcrypt": "^5.0.1",
     "@types/cookie-session": "^2.0.46",
     "@types/cors": "^2.8.14",
