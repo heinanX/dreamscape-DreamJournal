@@ -48,7 +48,7 @@ exports.createComment = createComment;
 const deleteComment = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield commentsModel_1.CommentsModel.findByIdAndDelete(req.params.id);
-        res.status(200).json({ message: "comment deleted" });
+        res.status(200).json('comment deleted');
     }
     catch (error) {
         next(error);

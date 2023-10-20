@@ -21,7 +21,7 @@ const getUsers = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
         res.status(200).json(users);
     }
     catch (error) {
-        res.status(404).json(error);
+        next(error);
     }
 });
 exports.getUsers = getUsers;
@@ -31,10 +31,10 @@ const createUser = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         const existingMail = yield userModel_1.UserModel.findOne({ mail: mail });
         const existingUsername = yield userModel_1.UserModel.findOne({ username: username });
         if (existingMail) {
-            return res.status(409).json("Email already registred");
+            return res.status(409).json('Email already in registered');
         }
         else if (existingUsername) {
-            return res.status(409).json("Username already taken");
+            return res.status(409).json('Username already in use');
         }
         else {
             const user = new userModel_1.UserModel(req.body);
@@ -42,15 +42,16 @@ const createUser = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             yield user.save();
             const jsonUser = user.toJSON();
             delete jsonUser.password;
+            //add cookie session data here later,,,, maybe
             res.status(201).json(jsonUser);
         }
     }
     catch (error) {
-        res.status(200).json(error);
+        next(error);
     }
 });
 exports.createUser = createUser;
-const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
         const existingUser = yield userModel_1.UserModel.findOne({
@@ -58,10 +59,10 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }).select("+password");
         if (!existingUser ||
             !(yield bcrypt_1.default.compare(req.body.password, existingUser.password))) {
-            return res.status(401).json("Wrong password");
+            return res.status(401).json('wrong username or password');
         }
         if ((_a = req.session) === null || _a === void 0 ? void 0 : _a._id) {
-            return res.status(200).json({ message: 'user already logged in' });
+            return res.status(200).json('user already logged in');
         }
         const user = existingUser.toJSON();
         delete user.password;
@@ -69,27 +70,27 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(200).json(user);
     }
     catch (error) {
-        res.status(200).json(error);
+        next(error);
     }
 });
 exports.login = login;
-const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const logout = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         req.session = null;
-        res.status(200).json({ message: "you have been logged out" });
+        res.status(200).json('user is logged out');
     }
     catch (error) {
-        res.status(200).json(error);
+        next(error);
     }
 });
 exports.logout = logout;
-const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield userModel_1.UserModel.findByIdAndDelete({ _id: req.params.id });
-        res.status(200).json({ message: "deleted" });
+        res.status(200).json(' user deleted');
     }
     catch (error) {
-        res.status(200).json(error);
+        next(error);
     }
 });
 exports.deleteUser = deleteUser;

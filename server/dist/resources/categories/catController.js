@@ -11,23 +11,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteCat = exports.createCategory = exports.getCat = exports.getCats = void 0;
 const catModel_1 = require("./catModel");
-const getCats = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getCats = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const categories = yield catModel_1.CatModel.find();
         res.status(200).json(categories);
     }
     catch (error) {
-        res.status(404).json(error);
+        next(error);
     }
 });
 exports.getCats = getCats;
-const getCat = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getCat = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const category = yield catModel_1.CatModel.findOne({ _id: req.params.id });
         res.status(200).json(category);
     }
     catch (error) {
-        res.status(404).json(error);
+        next(error);
     }
 });
 exports.getCat = getCat;
@@ -43,17 +43,17 @@ const createCategory = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
         }
     }
     catch (error) {
-        res.status(404).json(error);
+        next(error);
     }
 });
 exports.createCategory = createCategory;
-const deleteCat = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteCat = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield catModel_1.CatModel.findByIdAndDelete({ _id: req.params.id });
-        res.status(200).json({ message: "deleted" });
+        res.status(200).json('category deleted');
     }
     catch (error) {
-        res.status(200).json(error);
+        next(error);
     }
 });
 exports.deleteCat = deleteCat;

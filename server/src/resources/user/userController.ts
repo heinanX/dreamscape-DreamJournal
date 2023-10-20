@@ -11,7 +11,7 @@ export const getUsers = async (
     const users = await UserModel.find();
     res.status(200).json(users);
   } catch (error) {
-    res.status(404).json(error);
+    next(error);
   }
 };
 
@@ -25,11 +25,11 @@ export const createUser = async (
 
     const existingMail = await UserModel.findOne({ mail: mail });
     const existingUsername = await UserModel.findOne({ username: username });
-    
+
     if (existingMail) {
-      return res.status(409).json("Email already registred");
+      return res.status(409).json('Email already in registered');
     } else if (existingUsername) {
-      return res.status(409).json("Username already taken");
+      return res.status(409).json('Username already in use');
     } else {
       const user = new UserModel(req.body);
       user.password = await bcrypt.hash(password, 15);
@@ -38,14 +38,20 @@ export const createUser = async (
       const jsonUser = user.toJSON();
       delete jsonUser.password;
 
+      //add cookie session data here later,,,, maybe
+
       res.status(201).json(jsonUser);
     }
   } catch (error) {
-    res.status(200).json(error);
+    next(error);
   }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const existingUser = await UserModel.findOne({
       username: req.body.username,
@@ -55,40 +61,45 @@ export const login = async (req: Request, res: Response) => {
       !existingUser ||
       !(await bcrypt.compare(req.body.password, existingUser.password))
     ) {
-      return res.status(401).json("Wrong password");
+      return res.status(401).json( 'wrong username or password' );
     }
 
-
     if (req.session?._id) {
-    return res.status(200).json({ message: 'user already logged in' });
+      return res.status(200).json( 'user already logged in' );
     }
 
     const user = existingUser.toJSON();
     delete user.password;
-    req.session = user
+    req.session = user;
 
     res.status(200).json(user);
   } catch (error) {
-    res.status(200).json(error);
+    next(error);
   }
 };
 
-export const logout = async (req: Request, res: Response) => {
+export const logout = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     req.session = null;
-    res.status(200).json({ message: "you have been logged out" });
+    res.status(200).json( 'user is logged out' );
   } catch (error) {
-    res.status(200).json(error);
+    next(error);
   }
 };
 
-export const deleteUser = async (req: Request, res: Response) => {
+export const deleteUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    await UserModel.findByIdAndDelete({ _id: req.params.id })
-    res.status(200).json({ message: "deleted" });
+    await UserModel.findByIdAndDelete({ _id: req.params.id });
+    res.status(200).json( ' user deleted' );
   } catch (error) {
-    res.status(200).json(error);
+    next(error);
   }
 };
-
-

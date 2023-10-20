@@ -1,10 +1,17 @@
 GET http://localhost:3000/api/language
 
 ###
+GET http://localhost:3000/api/language/
 
-POST http://localhost:3000/api/language
+
+###
+POST http://localhost:3000/api/language/create
 Content-Type: application/json
 
 {
     "language": "Italian"
 }
+
+
+###
+DELETE http://localhost:3000/api/language/

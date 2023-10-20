@@ -1,29 +1,31 @@
 import { NextFunction, Request, Response } from "express";
 import { CatModel } from "./catModel";
 
-export const getCats = async(
+export const getCats = async (
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   try {
-      const categories = await CatModel.find( );
-      res.status(200).json(categories);
+    const categories = await CatModel.find();
+    res.status(200).json(categories);
   } catch (error) {
-      res.status(404).json(error);
+    next(error);
   }
-}
+};
 
-export const getCat = async(
+export const getCat = async (
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   try {
-      const category = await CatModel.findOne( {_id: req.params.id} );
-      res.status(200).json(category);
+    const category = await CatModel.findOne({ _id: req.params.id });
+    res.status(200).json(category);
   } catch (error) {
-      res.status(404).json(error);
+    next(error);
   }
-}
+};
 
 export const createCategory = async (
   req: Request,
@@ -33,22 +35,25 @@ export const createCategory = async (
   try {
     const checkCat = await CatModel.findOne(req.body);
     if (!checkCat) {
-        const newCategory = await CatModel.create(req.body);
-        res.status(201).json(newCategory);
+      const newCategory = await CatModel.create(req.body);
+      res.status(201).json(newCategory);
     } else {
-        res.status(404).json(req.body.category + ' already taken');
+      res.status(404).json( req.body.category + ' already taken' );
     }
   } catch (error) {
-    res.status(404).json(error);
+    next(error);
   }
 };
 
-
-export const deleteCat = async (req: Request, res: Response) => {
+export const deleteCat = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    await CatModel.findByIdAndDelete({ _id: req.params.id })
-    res.status(200).json({ message: "deleted" });
+    await CatModel.findByIdAndDelete({ _id: req.params.id });
+    res.status(200).json( 'category deleted' );
   } catch (error) {
-    res.status(200).json(error);
+    next(error);
   }
 };
