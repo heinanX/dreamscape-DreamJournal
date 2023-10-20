@@ -8,6 +8,6 @@ export const checkAdmin = (
     if (req.session?.isAdmin) {
       next();
     } else {
-      res.status(403).json({ message: `Access denied. You don't have permission to perform this action.` });
+      res.status(403).json( `Access denied. You don't have permission to perform this action.` );
     }
 };

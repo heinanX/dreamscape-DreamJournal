@@ -10,6 +10,6 @@ export function validate(schema: ObjectSchema) {
       if (!error) {
         return next();
       };
-      res.status(400).json(error.message);
+      next(error)
     };
   };

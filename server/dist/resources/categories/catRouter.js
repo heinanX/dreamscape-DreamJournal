@@ -10,5 +10,5 @@ const checkAdmin_1 = require("../_middlewares/checkAdmin");
 exports.catRouter = (0, express_1.Router)();
 exports.catRouter.get('/', catController_1.getCats);
 exports.catRouter.get('/:id', catController_1.getCat);
-exports.catRouter.post('/create', (0, validation_1.validate)(catModel_1.catJoiSchema), catMiddleware_1.formatData, catController_1.createCategory);
+exports.catRouter.post('/create', checkAdmin_1.checkAdmin, (0, validation_1.validate)(catModel_1.catJoiSchema), catMiddleware_1.formatData, catController_1.createCategory);
 exports.catRouter.delete('/:id', checkAdmin_1.checkAdmin, catController_1.deleteCat);

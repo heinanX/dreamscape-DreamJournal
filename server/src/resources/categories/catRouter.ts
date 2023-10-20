@@ -9,5 +9,5 @@ export const catRouter = Router();
 
 catRouter.get('/', getCats);
 catRouter.get('/:id', getCat);
-catRouter.post('/create', validate(catJoiSchema), formatData, createCategory);
+catRouter.post('/create', checkAdmin, validate(catJoiSchema), formatData, createCategory);
 catRouter.delete('/:id', checkAdmin, deleteCat);

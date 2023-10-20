@@ -8,7 +8,7 @@ function validate(schema) {
             return next();
         }
         ;
-        res.status(400).json(error.message);
+        next(error);
     };
 }
 exports.validate = validate;
