@@ -7,7 +7,7 @@ import { checkAdmin } from '../_middlewares/checkAdmin';
 export const userRouter = Router();
 
 
-userRouter.get('/', getUsers);
+userRouter.get('/', checkAdmin, getUsers);
 userRouter.post('/create', validate(userJoiSchema), createUser);
 userRouter.post('/login', login);
 userRouter.post('/logout', logout);

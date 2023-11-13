@@ -7,7 +7,7 @@ const userModel_1 = require("./userModel");
 const validation_1 = require("../_middlewares/validation");
 const checkAdmin_1 = require("../_middlewares/checkAdmin");
 exports.userRouter = (0, express_1.Router)();
-exports.userRouter.get('/', userController_1.getUsers);
+exports.userRouter.get('/', checkAdmin_1.checkAdmin, userController_1.getUsers);
 exports.userRouter.post('/create', (0, validation_1.validate)(userModel_1.userJoiSchema), userController_1.createUser);
 exports.userRouter.post('/login', userController_1.login);
 exports.userRouter.post('/logout', userController_1.logout);
