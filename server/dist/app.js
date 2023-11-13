@@ -14,6 +14,7 @@ const commentsRouter_1 = require("./resources/comments/commentsRouter");
 const langRouter_1 = require("./resources/languages/langRouter");
 const errorHandling_1 = require("./resources/_middlewares/errorHandling");
 const contRateRouter_1 = require("./resources/content_Rating/contRateRouter");
+const dreamsRouter_1 = require("./resources/dreams/dreamsRouter");
 const envSecret = process.env.COOKIE_SESSION_KEY;
 if (!envSecret) {
     throw new Error('The COOKIE_SESSION_KEY environment variable is not defined.');
@@ -33,6 +34,7 @@ exports.app.use(express_1.default.static('public'));
 exports.app.use('/api/users', userRouter_1.userRouter);
 exports.app.use('/api/categories', catRouter_1.catRouter);
 exports.app.use('/api/entries', entriesRouter_1.entryRouter);
+exports.app.use('/api/dreams', dreamsRouter_1.dreamsRouter);
 exports.app.use('/api/comments', commentsRouter_1.commentsRouter);
 exports.app.use('/api/language', langRouter_1.langRouter);
 exports.app.use('/api/content-rating', contRateRouter_1.contentRatingRouter);

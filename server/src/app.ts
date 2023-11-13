@@ -8,6 +8,7 @@ import { commentsRouter } from './resources/comments/commentsRouter';
 import { langRouter } from './resources/languages/langRouter';
 import { errorHandler, notFound } from './resources/_middlewares/errorHandling';
 import { contentRatingRouter } from './resources/content_Rating/contRateRouter';
+import { dreamsRouter } from './resources/dreams/dreamsRouter';
 
 const envSecret = process.env.COOKIE_SESSION_KEY
 if (!envSecret) {
@@ -31,6 +32,7 @@ app.use(express.static('public'));
 app.use('/api/users', userRouter);
 app.use('/api/categories', catRouter);
 app.use('/api/entries', entryRouter);
+app.use('/api/dreams', dreamsRouter);
 app.use('/api/comments', commentsRouter);
 app.use('/api/language', langRouter);
 app.use('/api/content-rating', contentRatingRouter);

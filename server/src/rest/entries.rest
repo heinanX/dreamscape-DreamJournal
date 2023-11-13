@@ -11,9 +11,9 @@ Content-Type: application/json
 
 {
     "title": "Look at this stuff",
-    "excerpt": "Isnt it neat, wouldnt you think that my collections complete",
+    "description": "it's a funny story",
     "body": "Wouldnt you think Im a girl, a girl who has, evertything",
-    "author": "652666c4559f8216cdb756f1",
+    "user": "652666c4559f8216cdb756f1",
     "categories": "652509e897a9c2ea6fae0d97",
     "language": "652699b2bf0592c9c21686ff",
     "content_rating": "6532d07fbdbbebce9d4ba147"

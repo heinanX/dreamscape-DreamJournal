@@ -4,15 +4,11 @@ import Joi from 'joi';
 const entriesSchema = new Schema(
   {
     title: { type: String, require: true },
-    excerpt: { type: String, require: true },
+    description: { type: String, require: true },
     body: { type: String, require: true },
-    author: { type: Schema.Types.ObjectId, ref: "users", required: true },
+    user: { type: Schema.Types.ObjectId, ref: "users", required: true },
     categories: {  type: Schema.Types.ObjectId, ref: "categories", required: true},
     content_rating: { type: Schema.Types.ObjectId, ref: "contentratings", required: true},
-    publication_date: { type: Date, default: Date.now },
-    last_updated: { type: Date, default: Date.now},
-    likes: [{ type: Schema.Types.ObjectId, ref: "users" }],
-    comments: [{ type: Schema.Types.ObjectId, ref: "comments" }],
     language: { type: Schema.Types.ObjectId, ref: "languages", required: true}
   }
 );
@@ -20,15 +16,11 @@ const entriesSchema = new Schema(
 export const entriesJoiSchema = Joi.object(
   {
     title: Joi.string().required(),
-    excerpt: Joi.string().required(),
+    description: Joi.string().required(),
     body: Joi.string().required(),
-    author: Joi.string().required(),
+    user: Joi.string().required(),
     categories: Joi.string().required(),
     content_rating: Joi.string().required(),
-    publication_date: Joi.date(),
-    last_updated: Joi.date(),
-    likes: Joi.array(),
-    comments: Joi.array(),
     language: Joi.string().required()
   }
 );

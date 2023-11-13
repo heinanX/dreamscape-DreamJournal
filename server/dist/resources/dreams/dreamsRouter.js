@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.dreamsRouter = void 0;
+const express_1 = require("express");
+const validation_1 = require("../_middlewares/validation");
+const dreamsModel_1 = require("./dreamsModel");
+const dreamsController_1 = require("./dreamsController");
+exports.dreamsRouter = (0, express_1.Router)();
+exports.dreamsRouter.get('/', dreamsController_1.getDreams);
+exports.dreamsRouter.get('/:id', dreamsController_1.getDream);
+exports.dreamsRouter.post('/create', (0, validation_1.validate)(dreamsModel_1.dreamsJoiSchema), dreamsController_1.createDream);
+exports.dreamsRouter.delete('/:id', dreamsController_1.deleteDream);

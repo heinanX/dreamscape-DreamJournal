@@ -1,0 +1,17 @@
+GET http://localhost:3000/api/dreams
+
+
+###
+GET http://localhost:3000/api/dreams/65523e201ee350e74e899bb1
+
+
+###
+POST http://localhost:3000/api/dreams/create
+Content-Type: application/json
+
+{
+    "entry": "65523a158eef2212ff540219"
+}
+
+###
+DELETE http://localhost:3000/api/dreams/652d1aa90936e0b06a783ff3
